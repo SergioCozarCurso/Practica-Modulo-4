@@ -6,16 +6,16 @@ public class Cliente{
 	
 	private int id;
 	private int id_gestor;
-	private char usuario;
-	private char password;
-	private char correo;
+	private String usuario;
+	private String password;
+	private String correo;
 	private double saldo;
 	
 	public Cliente() {
 		
 	}
 	
-	public Cliente(int id_gestor, char usuario, char password, char correo, double saldo) {
+	public Cliente(int id_gestor, String usuario, String password, String correo, double saldo) {
 		this.id_gestor = id_gestor;
 		this.usuario = usuario;
 		this.password = password;
@@ -31,27 +31,27 @@ public class Cliente{
 		this.id_gestor = id_gestor;
 	}
 
-	public char getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(char usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
-	public char getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(char password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public char getCorreo() {
+	public String getCorreo() {
 		return correo;
 	}
 
-	public void setCorreo(char correo) {
+	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
 

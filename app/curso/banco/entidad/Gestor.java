@@ -3,43 +3,44 @@ package app.curso.banco.entidad;
 public class Gestor{
 	
 	private int id;
-	private char usuario;
-	private char password;
-	private char correo;
+	private String usuario;
+	private String password;
+	private String correo;
 	
 
 	
 	public Gestor() {
 	}
 	
-	public Gestor(char usuario, char password, char correo) {
+	public Gestor(int id, String usuario, String password, String correo) {
+		this.id = id;
 		this.usuario = usuario;
 		this.password = password;
 		this.correo = correo;
 	}
 	
 	
-	public char getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
 	
-	public void setUsuario(char usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 	
-	public char getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	
-	public void setPassword(char password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-	public char getCorreo() {
+	public String getCorreo() {
 		return correo;
 	}
 	
-	public void setCorreo(char correo) {
+	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
 	
