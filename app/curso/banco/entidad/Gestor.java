@@ -47,6 +47,10 @@ public class Gestor{
 	public int getId() {
 		return id;
 	}
+	
+	
+	
+
 
 
 }

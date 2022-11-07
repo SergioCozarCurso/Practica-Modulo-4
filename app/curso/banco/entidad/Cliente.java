@@ -4,6 +4,8 @@ package app.curso.banco.entidad;
 public class Cliente{
 	
 	
+	
+
 	private int id;
 	private int id_gestor;
 	private String usuario;
@@ -66,5 +68,10 @@ public class Cliente{
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	
 }
