@@ -1,13 +1,17 @@
 package app.curso.banco.main;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import app.curso.banco.db.DatabaseCliente;
 import app.curso.banco.db.DatabaseGestor;
+import app.curso.banco.db.DatabaseMensaje;
 import app.curso.banco.entidad.Cliente;
 import app.curso.banco.entidad.Gestor;
+import app.curso.banco.entidad.Mensaje;
 
 public class Main {
 
@@ -16,6 +20,7 @@ public class Main {
 		// inicializa la base de datos
 		DatabaseGestor databaseGestor = new DatabaseGestor();
 		DatabaseCliente databaseCliente = new DatabaseCliente();
+		DatabaseMensaje databaseMensaje = new DatabaseMensaje();
 		
 		// GESTORES:
 		
@@ -56,6 +61,29 @@ public class Main {
 		
 		// elimina un cliente
 		//deleteCliente(databaseCliente, 2);
+		
+		//-----------------------------------------------------------------------------------
+		
+		// MENSAJES:
+		ArrayList<Cliente> mensajes = null;
+		
+		
+		// obtiene los mensajes
+		//obtenerMensajes(databaseMensaje);
+		
+		// obtiene un mensaje
+		//obtenerMensaje(databaseMensaje, 2);
+		
+		// Nuevo mensaje
+		String texto = "Hola, prueba de crear un nuevo mensaje2";
+		nuevoMensaje(databaseMensaje, 1, 1, texto);
+		
+		// actualiza un mensaje
+		//String textoUpdate = "Hola, prueba de crear un nuevo mensaje2";
+		//updateMensaje(databaseMensaje, 1, 1, 1, textoUpdate);
+		
+		// elimina un mensaje
+		//deleteMensaje(databaseMensaje, 2);
 	}
 	
 	
@@ -249,7 +277,106 @@ public class Main {
 		return borrado;
 	}
 
+	// ----------------------------------------------------------------------------------------------------------------------------------
 	
+
+	// MENSAJES:
+
+	// Read MENSAJES
+	private static ArrayList<Mensaje> obtenerMensajes(DatabaseMensaje database) {
+		
+		ArrayList<Mensaje> mensajes = database.getMensajes();
+		
+		
+		mensajes.forEach((mensaje) -> {
+			System.out.println("Id: "+ mensaje.getId());
+			System.out.println("Id_origen: "+ mensaje.getId_origen());
+			System.out.println("Id_destino: "+ mensaje.getId_destino());
+			System.out.println("Texto: "+ mensaje.getTexto());
+			System.out.println("Fecha: "+ mensaje.getFecha());
+		});
+		
+		return mensajes;
+	
+	}
+	
+	
+	// Read mensaje
+	private static Mensaje obtenerMensaje(DatabaseMensaje database, int id) throws SQLException {
+		
+		Mensaje mensaje= database.getMensaje(id);
+		
+		if(mensaje ==null) {
+			System.out.println("No existe ese mensaje");
+			return null;
+		}
+		
+		System.out.println("Id: "+ mensaje.getId());
+		System.out.println("Id_origen: "+ mensaje.getId_origen());
+		System.out.println("Id_destino: "+ mensaje.getId_destino());
+		System.out.println("Texto: "+ mensaje.getTexto());
+		System.out.println("Fecha: "+ mensaje.getFecha());
+		
+		
+		return mensaje;
+		
+	}
+	
+	
+	// Create mensaje
+	private static boolean nuevoMensaje(DatabaseMensaje database, int id_origen, int id_destino, String texto) {
+		
+		
+		long ms = new java.util.Date().getTime();
+		Timestamp datetime = new Timestamp(ms);
+				
+		
+		Mensaje mensaje= new Mensaje(id_origen, id_destino, texto, datetime);
+		boolean insertado = database.nuevoMensaje(mensaje);
+		
+		if(insertado == true) {			
+			System.out.println("Mensaje creado correctamente");
+		}else {
+			System.out.println("No se pudo crear el mensaje");			
+		}
+		
+		return insertado;
+	}
+	
+	
+	// Update mensaje
+	private static boolean updateMensaje(DatabaseMensaje database, int id, int id_origen, int id_destino, String texto) {
+		
+		long ms = new java.util.Date().getTime();
+		Timestamp datetime = new Timestamp(ms);
+		
+		Mensaje mensaje= new Mensaje(id_origen, id_destino, texto, datetime);
+		mensaje.setId(id);
+		boolean insertado = database.updateMensaje(mensaje);
+		
+		if(insertado == true) {
+			System.out.println("Mensaje actualizado correctamente");
+		}else {
+			System.out.println("No se pudo actualizar el mensaje");			
+		}
+		
+		return insertado;
+	}
+	
+	// Delete mensaje
+	private static boolean deleteMensaje(DatabaseMensaje database, int id) {
+		
+		boolean borrado = database.deleteMensaje(id);
+		
+		if(borrado == true) {			
+			System.out.println("Mensaje borrado correctamente");
+		}else {
+			System.out.println("No se pudo borrar el mensaje");			
+		}
+		
+		return borrado;
+	}
+
 	
 	
 	

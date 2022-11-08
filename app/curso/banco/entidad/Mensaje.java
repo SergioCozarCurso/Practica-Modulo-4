@@ -1,6 +1,7 @@
 package app.curso.banco.entidad;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Mensaje {
 	
@@ -8,8 +9,8 @@ public class Mensaje {
 	protected int id;
 	protected int id_origen;
 	protected int id_destino;
-	protected char texto;
-	protected Date fecha;
+	protected String texto;
+	protected Timestamp fecha;
 
 	
 
@@ -17,7 +18,7 @@ public class Mensaje {
 		
 	}
 	
-	public Mensaje(int id_origen, int id_destino, char texto, Date fecha) {
+	public Mensaje(int id_origen, int id_destino, String texto, Timestamp fecha) {
 		
 		this.id_origen = id_origen;
 		this.id_destino = id_destino;
@@ -51,19 +52,19 @@ public class Mensaje {
 		this.id_destino = id_destino;
 	}
 
-	public char getTexto() {
+	public String getTexto() {
 		return texto;
 	}
 
-	public void setTexto(char texto) {
+	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
-	public Date getFecha() {
+	public Timestamp getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 

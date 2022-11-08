@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,8 +42,8 @@ public class DatabaseMensaje {
 			int id = resultados.getInt("id");
 			int id_origen = resultados.getInt("id_origen");
 			int id_destino = resultados.getInt("id_destino");
-			char texto= resultados.getString("texto").charAt(140);
-			Date fecha = resultados.getDate("fecha");
+			String texto= resultados.getString("texto");
+			Timestamp fecha = resultados.getTimestamp("fecha");
 			
 			Mensaje mensaje= new Mensaje(id_origen, id_destino, texto, fecha);
 			mensaje.setId(id);
@@ -68,7 +69,7 @@ public class DatabaseMensaje {
 		}
 	
 	
-	public Mensaje getmensaje(int id) {
+	public Mensaje getMensaje(int id) {
 		
 		Mensaje mensaje= null;
 		PreparedStatement instruccion = null;
@@ -84,9 +85,9 @@ public class DatabaseMensaje {
 			if(resultados.next()) {
 				mensaje = new Mensaje();
 				mensaje.setId_origen(resultados.getInt("id_origen"));
-				mensaje.setId_destino(resultados.getInt("destino"));
-				mensaje.setTexto(resultados.getString("texto").charAt(140));
-				mensaje.setFecha(resultados.getDate("fecha"));
+				mensaje.setId_destino(resultados.getInt("id_destino"));
+				mensaje.setTexto(resultados.getString("texto"));
+				mensaje.setFecha(resultados.getTimestamp("fecha"));
 			}
 			
 		
@@ -119,8 +120,8 @@ public class DatabaseMensaje {
 		
 		instruccion.setInt(1, mensaje.getId_origen());
 		instruccion.setInt(2, mensaje.getId_destino());
-		instruccion.setLong(3, mensaje.getTexto());
-		instruccion.setDate(4, mensaje.getFecha());
+		instruccion.setString(3, mensaje.getTexto());
+		instruccion.setTimestamp(4, mensaje.getFecha());
 
 		// ejecuta sentencia SQL
 		int filasCreadas = instruccion.executeUpdate();
@@ -143,7 +144,7 @@ public class DatabaseMensaje {
 	}	
 
 	
-	public boolean updateGestor(Mensaje mensaje) {
+	public boolean updateMensaje(Mensaje mensaje) {
 		
 	
 		PreparedStatement instruccion = null;
@@ -154,8 +155,8 @@ public class DatabaseMensaje {
 			
 			instruccion.setInt(1, mensaje.getId_origen());
 			instruccion.setInt(2, mensaje.getId_destino());
-			instruccion.setLong(3, mensaje.getTexto());
-			instruccion.setDate(4, mensaje.getFecha());
+			instruccion.setString(3, mensaje.getTexto());
+			instruccion.setTimestamp(4, mensaje.getFecha());
 			instruccion.setInt(5, mensaje.getId());
 	
 			int filasActualizadas = instruccion.executeUpdate();			
