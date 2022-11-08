@@ -1,36 +1,31 @@
 package app.curso.banco.entidad;
 
+import java.sql.Date;
+
 public class Mensaje {
 	
+	
 	protected int id;
-	
-	protected char tipoEmisor;
-	protected int idEmisor;
-	
-	protected char tipoReceptor;
-	protected int idReceptor;
-	
-	protected String textoMensaje;
-	
-	public static final char TIPO_CLIENTE = 'c';
-	public static final char TIPO_GESTOR = 'g';
+	protected int id_origen;
+	protected int id_destino;
+	protected char texto;
+	protected Date fecha;
+
 	
 
 	public Mensaje() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
-	public Mensaje(int id, char tipoEmisor, int idEmisor, char tipoReceptor, int idReceptor, String textoMensaje) {
+	public Mensaje(int id_origen, int id_destino, char texto, Date fecha) {
 		
-		
-		this.id = id;
-		this.tipoEmisor = tipoEmisor;
-		this.idEmisor = idEmisor;
-		this.tipoReceptor = tipoReceptor;
-		this.idReceptor = idReceptor;
-		this.textoMensaje = textoMensaje;
+		this.id_origen = id_origen;
+		this.id_destino = id_destino;
+		this.texto = texto;
+		this.fecha = fecha;
 	}
-
+	
+	
 	
 	public int getId() {
 		return id;
@@ -40,49 +35,38 @@ public class Mensaje {
 		this.id = id;
 	}
 
-	public int getIdEmisor() {
-		return idEmisor;
+	public int getId_origen() {
+		return id_origen;
 	}
 
-	public void setIdEmisor(int idEmisor) {
-		this.idEmisor = idEmisor;
+	public void setId_origen(int id_origen) {
+		this.id_origen = id_origen;
 	}
 
-	public int getIdReceptor() {
-		return idReceptor;
+	public int getId_destino() {
+		return id_destino;
 	}
 
-	public void setIdReceptor(int idReceptor) {
-		this.idReceptor = idReceptor;
+	public void setId_destino(int id_destino) {
+		this.id_destino = id_destino;
 	}
 
-	public char getTipoEmisor() {
-		return tipoEmisor;
-	}
-
-	public void setTipoEmisor(char tipoEmisor) {
-		this.tipoEmisor = tipoEmisor;
-	}
-
-	public char getTipoReceptor() {
-		return tipoReceptor;
-	}
-
-	public void setTipoReceptor(char tipoReceptor) {
-		this.tipoReceptor = tipoReceptor;
-	}
-
-	public String getTextoMensaje() {
-		return textoMensaje;
-	}
-
-	public void setTextoMensaje(String textoMensaje) {
-		this.textoMensaje = textoMensaje;
-	}
-	
-	public String toString() {
-		String texto = "De: " + this.idEmisor + ", Para: " + this.idReceptor + ", Mensaje: " + this.textoMensaje;
+	public char getTexto() {
 		return texto;
 	}
+
+	public void setTexto(char texto) {
+		this.texto = texto;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	
 
 }

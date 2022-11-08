@@ -22,7 +22,7 @@ public class Main {
 		ArrayList<Gestor> gestores = null;
 		
 		// obtiene los gestores
-		//obtenerGestores(databaseGestor);
+		//gestores = obtenerGestores(databaseGestor);
 		
 		// obtiene un gestor
 		//obtenerGestor(databaseGestor, 1);
@@ -31,7 +31,7 @@ public class Main {
 		//insertarGestor(databaseGestor, "gestor1", "1234", "gestor1@email.com");
 		
 		// actualiza un gestor
-		//updateGestor(databaseGestor, 4, "gestor4", "12345", "gestor4@email.com");
+		//updateGestor(databaseGestor, 1, "gestor4", "12345", "gestor4@email.com");
 		
 		// elimina un gestor
 		//deleteGestor(databaseGestor, 2);
@@ -46,13 +46,13 @@ public class Main {
 		//obtenerClientes(databaseCliente);
 		
 		// obtiene un cliente
-		//obtenerCliente(databaseCliente, 2);
+		//obtenerCliente(databaseCliente, 1);
 		
 		// inserta un cliente
-		//insertarCliente(databaseCliente, 1, "cliente1", "1234", "cliente1@email.com", 30.0);
+		//insertarCliente(databaseCliente, 1, "cliente2", "1234", "cliente2@email.com", 30.0);
 		
 		// actualiza un cliente
-		updateCliente(databaseCliente, 2, 1, "cliente2", "12345", "cliente2@email.com", 30.1);
+		//updateCliente(databaseCliente, 1, 1, "clienteUpdate", "12345", "clienteUpdate@email.com", 30.1);
 		
 		// elimina un cliente
 		//deleteCliente(databaseCliente, 2);
@@ -65,6 +65,11 @@ public class Main {
 	private static ArrayList<Gestor> obtenerGestores(DatabaseGestor database) {
 		
 		ArrayList<Gestor> gestores = database.getGestores();
+		
+		if(gestores == null) {
+			System.out.println("No hay gestores o no se puedieron obtener");
+			return null;
+		}
 		
 		
 		gestores.forEach((gestor) -> {
@@ -84,6 +89,11 @@ public class Main {
 		
 		Gestor gestor = database.getGestor(id);
 		
+		if(gestor == null) {
+			System.out.println("No se pudo obtener ningún gestor");
+			return null;
+		}
+		
 		
 		System.out.println("Id: " + gestor.getId());
 		System.out.println("Usuario: " + gestor.getUsuario());
@@ -100,7 +110,7 @@ public class Main {
 	// Create gestor
 	private static boolean insertarGestor(DatabaseGestor database, String usuario, String password, String correo) {
 		
-		Gestor gestor = new Gestor(1, usuario, password, correo);
+		Gestor gestor = new Gestor(usuario, password, correo);
 		boolean insertado = database.insertarGestor(gestor);
 		
 		if(insertado == true) {			
@@ -116,7 +126,8 @@ public class Main {
 	// Update gestor
 	private static boolean updateGestor(DatabaseGestor database, int id, String usuario, String password, String correo) {
 		
-		Gestor gestor = new Gestor(id, usuario, password, correo);
+		Gestor gestor = new Gestor(usuario, password, correo);
+		gestor.setId(id);
 		boolean insertado = database.updateGestor(gestor);
 		
 		if(insertado == true) {
@@ -212,6 +223,7 @@ public class Main {
 	private static boolean updateCliente(DatabaseCliente database, int id, int id_gestor, String usuario, String password, String correo, Double saldo) {
 		
 		Cliente cliente = new Cliente(id_gestor, usuario, password, correo, saldo);
+		cliente.setId(id);
 		boolean insertado = database.updateCliente(cliente);
 		
 		if(insertado == true) {

@@ -169,6 +169,8 @@ public class DatabaseCliente {
 			
 			instruccion.setDouble(5, cliente.getSaldo());
 			
+			instruccion.setDouble(6, cliente.getId());
+			
 	
 			int filasActualizadas = instruccion.executeUpdate();
 			

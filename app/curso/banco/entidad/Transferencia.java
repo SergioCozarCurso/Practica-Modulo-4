@@ -1,6 +1,6 @@
 package app.curso.banco.entidad;
 
-public class Transferencia extends Mensaje{
+public class Transferencia{
 	
 
 	private float dinero;
@@ -11,9 +11,6 @@ public class Transferencia extends Mensaje{
 	
 	public Transferencia(int id, char tipoEmisor, int idEmisor, char tipoReceptor, int idReceptor, String textoMensaje, float dinero) {
 		
-		super(id, tipoEmisor, idEmisor, tipoReceptor, idReceptor, textoMensaje);
-		
-		this.dinero = dinero;
 	}
 	
 

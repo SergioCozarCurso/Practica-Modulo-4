@@ -12,7 +12,7 @@ public class Gestor{
 	public Gestor() {
 	}
 	
-	public Gestor(int id, String usuario, String password, String correo) {
+	public Gestor(String usuario, String password, String correo) {
 		this.id = id;
 		this.usuario = usuario;
 		this.password = password;
@@ -48,9 +48,9 @@ public class Gestor{
 		return id;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
-	
-
-
 
 }
