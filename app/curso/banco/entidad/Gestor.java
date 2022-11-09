@@ -13,7 +13,6 @@ public class Gestor{
 	}
 	
 	public Gestor(String usuario, String password, String correo) {
-		this.id = id;
 		this.usuario = usuario;
 		this.password = password;
 		this.correo = correo;
