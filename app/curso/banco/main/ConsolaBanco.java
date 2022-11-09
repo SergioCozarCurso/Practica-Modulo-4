@@ -4,12 +4,11 @@ package app.curso.banco.main;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import app.curso.banco.db.DatabaseCliente;
-import app.curso.banco.db.DatabaseGestor;
-import app.curso.banco.db.DatabaseMensaje;
-import app.curso.banco.db.DatabaseTransferencia;
+import app.curso.banco.db.*;
+
 
 import app.curso.banco.util.utiles;
+import app.curso.banco.tests.*;
 
 public class ConsolaBanco {
 	
@@ -38,87 +37,87 @@ public class ConsolaBanco {
 			switch(opcion) {
 			
 			case 1:	
-				Main.obtenerGestores(databaseGestor);
+				TestsGestor.obtenerGestores(databaseGestor);
 			break;
 			
 			case 2:
-				Main.obtenerGestor(databaseGestor, 1);
+				TestsGestor.obtenerGestor(databaseGestor, 1);
 			break;
 			
 			case 3:
-				Main.insertarGestor(databaseGestor, "gestor1", "1234", "gestor1@email.com");
+				TestsGestor.insertarGestor(databaseGestor, "gestor1", "1234", "gestor1@email.com");
 			break;
 				
 			case 4:
-				Main.updateGestor(databaseGestor, 1, "gestorUpdate", "12345", "gestorUpdate@email.com");
+				TestsGestor.updateGestor(databaseGestor, 1, "gestorUpdate", "12345", "gestorUpdate@email.com");
 			break;
 			
 			case 5:
-				Main.deleteGestor(databaseGestor, 1);
+				TestsGestor.deleteGestor(databaseGestor, 1);
 			break;
 			
 			case 6:
-				Main.obtenerClientes(databaseCliente);
+				TestsCliente.obtenerClientes(databaseCliente);
 			break;
 				
 			case 7:
-				Main.obtenerCliente(databaseCliente, 1);
+				TestsCliente.obtenerCliente(databaseCliente, 1);
 			break;
 				
 			case 8:
-				Main.insertarCliente(databaseCliente, 1, "cliente1", "1234", "cliente1@email.com", 30.0);
+				TestsCliente.insertarCliente(databaseCliente, 1, "cliente1", "1234", "cliente1@email.com", 30.0);
 			break;
 				
 			case 9:
-				Main.updateCliente(databaseCliente, 1, 1, "clienteUpdate", "12345", "clienteUpdate@email.com", 30.1);
+				TestsCliente.updateCliente(databaseCliente, 1, 1, "clienteUpdate", "12345", "clienteUpdate@email.com", 30.1);
 			break;
 				
 			case 10:
-				Main.deleteCliente(databaseCliente, 1);
+				TestsCliente.deleteCliente(databaseCliente, 1);
 			break;
 			
 			case 11:
-				Main.obtenerMensajes(databaseMensaje);
+				TestsMensaje.obtenerMensajes(databaseMensaje);
 			break;
 				
 			case 12:
-				Main.obtenerMensaje(databaseMensaje, 1);
+				TestsMensaje.obtenerMensaje(databaseMensaje, 1);
 			break;
 				
 			case 13:
 				String texto = "Hola, prueba de crear un nuevo mensaje";
-				Main.nuevoMensaje(databaseMensaje, 1, 1, texto);
+				TestsMensaje.nuevoMensaje(databaseMensaje, 1, 1, texto);
 			break;
 				
 			case 14:
 				String textoUpdate = "Hola, prueba de crear un nuevo mensaje2";
-				Main.updateMensaje(databaseMensaje, 1, 1, 1, textoUpdate);
+				TestsMensaje.updateMensaje(databaseMensaje, 1, 1, 1, textoUpdate);
 			break;
 				
 			case 15:
-				Main.deleteMensaje(databaseMensaje, 2);
+				TestsMensaje.deleteMensaje(databaseMensaje, 2);
 			break;
 			
 			case 16:
-				Main.obtenerTransferencias(databaseTransferencia);
+				TestsTransferencia.obtenerTransferencias(databaseTransferencia);
 				break;
 				
 			case 17:
-				Main.obtenerTransferencia(databaseTransferencia, 1);
+				TestsTransferencia.obtenerTransferencia(databaseTransferencia, 1);
 				break;
 				
 			case 18:
 				String concepto = "Concepto";
-				Main.nuevaTransferencia(databaseTransferencia, 1, 1, 2000, concepto);
+				TestsTransferencia.nuevaTransferencia(databaseTransferencia, 1, 1, 2000, concepto);
 				break;
 				
 			case 19:
 				String conceptoUpdate = "Concepto Update";
-				Main.updateTransferencia(databaseTransferencia, 1, 1, 1, 3000, conceptoUpdate);
+				TestsTransferencia.updateTransferencia(databaseTransferencia, 1, 1, 1, 3000, conceptoUpdate);
 				break;
 				
 			case 20:
-				Main.deleteTransferencia(databaseTransferencia, 1);
+				TestsTransferencia.deleteTransferencia(databaseTransferencia, 1);
 				break;
 			
 			
