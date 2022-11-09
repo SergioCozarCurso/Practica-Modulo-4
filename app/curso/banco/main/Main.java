@@ -28,19 +28,19 @@ public class Main {
 		
 		// GESTORES:
 				
-		// obtiene los gestores
-		//gestores = obtenerGestores(databaseGestor);
+		// Obtiene los gestores
+		//obtenerGestores(databaseGestor);
 		
-		// obtiene un gestor
+		// Obtiene un gestor
 		//obtenerGestor(databaseGestor, 1);
 		
-		// inserta un gestor
+		// Inserta un gestor
 		//insertarGestor(databaseGestor, "gestor1", "1234", "gestor1@email.com");
 		
-		// actualiza un gestor
+		// Actualiza un gestor
 		//updateGestor(databaseGestor, 1, "gestor4", "12345", "gestor4@email.com");
 		
-		// elimina un gestor
+		// Elimina un gestor
 		//deleteGestor(databaseGestor, 2);
 		
 		//-----------------------------------------------------------------------------------
@@ -48,19 +48,19 @@ public class Main {
 		
 		// CLIENTES:	
 
-		// obtiene los clientes
+		// Obtiene los clientes
 		//obtenerClientes(databaseCliente);
 		
-		// obtiene un cliente
+		// Obtiene un cliente
 		//obtenerCliente(databaseCliente, 1);
 		
-		// inserta un cliente
+		// Inserta un cliente
 		//insertarCliente(databaseCliente, 1, "cliente2", "1234", "cliente2@email.com", 30.0);
 		
-		// actualiza un cliente
+		// Actualiza un cliente
 		//updateCliente(databaseCliente, 1, 1, "clienteUpdate", "12345", "clienteUpdate@email.com", 30.1);
 		
-		// elimina un cliente
+		// Elimina un cliente
 		//deleteCliente(databaseCliente, 2);
 		
 		//-----------------------------------------------------------------------------------
@@ -68,21 +68,21 @@ public class Main {
 		
 		// MENSAJES:
 		
-		// obtiene los mensajes
+		// Obtiene los mensajes
 		//obtenerMensajes(databaseMensaje);
 		
-		// obtiene un mensaje
+		// Obtiene un mensaje
 		//obtenerMensaje(databaseMensaje, 2);
 		
 		// Nuevo mensaje
 		//String texto = "Hola, prueba de crear un nuevo mensaje";
 		//nuevoMensaje(databaseMensaje, 1, 1, texto);
 		
-		// actualiza un mensaje
+		// Actualiza un mensaje
 		//String textoUpdate = "Hola, prueba de crear un nuevo mensaje2";
 		//updateMensaje(databaseMensaje, 1, 1, 1, textoUpdate);
 		
-		// elimina un mensaje
+		// Elimina un mensaje
 		//deleteMensaje(databaseMensaje, 2);
 
 		//-----------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ public class Main {
 		//updateTransferencia(databaseTransferencia, 1, 5, 1, 3000, conceptoUpdate);
 		
 		// Elimina una transferencia
-		deleteTransferencia(databaseTransferencia, 1);
+		//deleteTransferencia(databaseTransferencia, 1);
 	}
 	
 	
@@ -214,6 +214,11 @@ public class Main {
 		
 		ArrayList<Cliente> clientes = database.getClientes();
 		
+		if(clientes == null) {
+			System.out.println("No hay clientes o no se puedieron obtener");
+			return null;
+		}
+		
 		
 		clientes.forEach((gestor) -> {
 			System.out.println("Id: "+ gestor.getId());
@@ -308,6 +313,11 @@ public class Main {
 	private static ArrayList<Mensaje> obtenerMensajes(DatabaseMensaje database) {
 		
 		ArrayList<Mensaje> mensajes = database.getMensajes();
+		
+		if(mensajes == null) {
+			System.out.println("No hay mensajes o no se puedieron obtener");
+			return null;
+		}
 		
 		
 		mensajes.forEach((mensaje) -> {
@@ -409,6 +419,11 @@ public class Main {
 	private static ArrayList<Transferencia> obtenerTransferencias(DatabaseTransferencia database) {
 		
 		ArrayList<Transferencia> transferencias= database.getTransferencias();
+		
+		if(transferencias == null) {
+			System.out.println("No hay transferencias o no se puedieron obtener");
+			return null;
+		}
 		
 		
 		transferencias.forEach((transferencia) -> {

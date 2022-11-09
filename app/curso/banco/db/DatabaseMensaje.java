@@ -19,13 +19,11 @@ public class DatabaseMensaje {
 	private Connection conexion;
 	
 	public DatabaseMensaje() {
-	try {
-	// conecta con la base de datos
-	conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "banco", "");
-	} catch (SQLException e) {
-	e.printStackTrace();
+	
+		// conecta con la base de datos
+		DatabaseConnection database = new DatabaseConnection();
+		conexion = database.getConexion();
 	}
-}
 	
 	public ArrayList<Mensaje> getMensajes() {
 		

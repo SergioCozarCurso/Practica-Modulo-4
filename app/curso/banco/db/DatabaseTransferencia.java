@@ -15,18 +15,19 @@ import app.curso.banco.entidad.Gestor;
 import app.curso.banco.entidad.Mensaje;
 import app.curso.banco.entidad.Transferencia;
 
+import app.curso.banco.db.DatabaseConnection;
+
+
 public class DatabaseTransferencia {
 
 	private Connection conexion;
 	
 	public DatabaseTransferencia() {
-	try {
+		
 	// conecta con la base de datos
-	conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "banco", "");
-	} catch (SQLException e) {
-	e.printStackTrace();
+		DatabaseConnection database = new DatabaseConnection();
+		conexion = database.getConexion();
 	}
-}
 	
 	public ArrayList<Transferencia> getTransferencias() {
 		
