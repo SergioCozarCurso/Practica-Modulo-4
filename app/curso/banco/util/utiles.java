@@ -32,6 +32,7 @@ public class utiles{
 			"18. Insertar transferencia",
 			"19. Actualizar transferencia",
 			"20. Borrar transferencia\n",
+			"21. FINALIZAR\n",
 			"---------------------------------------------------------\n",
 			
 	};

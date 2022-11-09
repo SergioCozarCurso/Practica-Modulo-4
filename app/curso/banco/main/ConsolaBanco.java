@@ -28,7 +28,7 @@ public class ConsolaBanco {
 		
 		do {
 			
-			for(int i = 0; i<26; i++) {	
+			for(int i = 0; i<27; i++) {	
 				System.out.println(utiles.MENU[i]);
 			}
 			
@@ -41,19 +41,28 @@ public class ConsolaBanco {
 			break;
 			
 			case 2:
-				TestsGestor.obtenerGestor(databaseGestor, 1);
+				int id_gestor = 1;
+				TestsGestor.obtenerGestor(databaseGestor, id_gestor);
 			break;
 			
 			case 3:
-				TestsGestor.insertarGestor(databaseGestor, "gestor1", "1234", "gestor1@email.com");
+				String usuario = "gestor1";
+				String password = "1234";
+				String mail = "gestor1@email.com";
+				TestsGestor.insertarGestor(databaseGestor, usuario, password, mail);
 			break;
 				
 			case 4:
-				TestsGestor.updateGestor(databaseGestor, 1, "gestorUpdate", "12345", "gestorUpdate@email.com");
+				int id_gestorUpdate = 1;
+				String usuarioUpdate = "gestor1";
+				String passwordUpdate = "1234";
+				String mailUpdate = "gestor1@email.com";
+				TestsGestor.updateGestor(databaseGestor, id_gestorUpdate, usuarioUpdate, passwordUpdate, mailUpdate);
 			break;
 			
 			case 5:
-				TestsGestor.deleteGestor(databaseGestor, 1);
+				int id_gestorDelete = 1;
+				TestsGestor.deleteGestor(databaseGestor, id_gestorDelete);
 			break;
 			
 			case 6:
@@ -61,19 +70,32 @@ public class ConsolaBanco {
 			break;
 				
 			case 7:
-				TestsCliente.obtenerCliente(databaseCliente, 1);
+				int id_cliente = 1;
+				TestsCliente.obtenerCliente(databaseCliente, id_cliente);
 			break;
 				
 			case 8:
-				TestsCliente.insertarCliente(databaseCliente, 1, "cliente1", "1234", "cliente1@email.com", 30.0);
+				int id_gestorCliente = 1;
+				String usuario2 = "cliente1";
+				String password2 = "1234";
+				String mail2 = "cliente1@email.com";
+				Double saldo = 30.0;
+				TestsCliente.insertarCliente(databaseCliente, id_gestorCliente, usuario2, password2, mail2, saldo);
 			break;
 				
 			case 9:
-				TestsCliente.updateCliente(databaseCliente, 1, 1, "clienteUpdate", "12345", "clienteUpdate@email.com", 30.1);
+				int id_clienteUpdate = 1;
+				int id_gestorClienteUpdate = 1;
+				String usuario2Update = "clienteUpdate";
+				String password2Update = "12345";
+				String mail2Update = "clienteUpdate@email.com";
+				Double saldoUpdate = 40.0;
+				TestsCliente.updateCliente(databaseCliente, id_clienteUpdate, id_gestorClienteUpdate, usuario2Update, password2Update, mail2Update, saldoUpdate);
 			break;
 				
 			case 10:
-				TestsCliente.deleteCliente(databaseCliente, 1);
+				int id_clienteDelete = 1;
+				TestsCliente.deleteCliente(databaseCliente, id_clienteDelete);
 			break;
 			
 			case 11:
@@ -81,60 +103,82 @@ public class ConsolaBanco {
 			break;
 				
 			case 12:
-				TestsMensaje.obtenerMensaje(databaseMensaje, 1);
+				int id_mensaje = 1;
+				TestsMensaje.obtenerMensaje(databaseMensaje, id_mensaje);
 			break;
 				
 			case 13:
+				int id_origen = 1;
+				int id_destino = 1;
 				String texto = "Hola, prueba de crear un nuevo mensaje";
-				TestsMensaje.nuevoMensaje(databaseMensaje, 1, 1, texto);
+				TestsMensaje.nuevoMensaje(databaseMensaje, id_origen, id_destino, texto);
 			break;
 				
 			case 14:
+				int id = 1;
+				int id_origenUpdate = 1;
+				int id_destinoUpdate = 1;
 				String textoUpdate = "Hola, prueba de crear un nuevo mensaje2";
-				TestsMensaje.updateMensaje(databaseMensaje, 1, 1, 1, textoUpdate);
+				TestsMensaje.updateMensaje(databaseMensaje, id, id_origenUpdate, id_destinoUpdate, textoUpdate);
 			break;
 				
 			case 15:
-				TestsMensaje.deleteMensaje(databaseMensaje, 2);
+				int id_MensajeDelete = 1;
+				TestsMensaje.deleteMensaje(databaseMensaje, id_MensajeDelete);
 			break;
 			
 			case 16:
 				TestsTransferencia.obtenerTransferencias(databaseTransferencia);
-				break;
+			break;
 				
 			case 17:
-				TestsTransferencia.obtenerTransferencia(databaseTransferencia, 1);
-				break;
+				int id_transferencia = 1;
+				TestsTransferencia.obtenerTransferencia(databaseTransferencia, id_transferencia);
+			break;
 				
 			case 18:
+				int id_ordenante = 1;
+				int id_beneficiario = 1;
+				double importe = 2000;
 				String concepto = "Concepto";
-				TestsTransferencia.nuevaTransferencia(databaseTransferencia, 1, 1, 2000, concepto);
-				break;
+				TestsTransferencia.nuevaTransferencia(databaseTransferencia, id_ordenante, id_beneficiario, importe, concepto);
+			break;
 				
 			case 19:
+				int id2 = 1;
+				int id_ordenanteUpdate = 1;
+				int id_beneficiarioUpdate = 1;
+				double importeUpdate = 2000;
 				String conceptoUpdate = "Concepto Update";
-				TestsTransferencia.updateTransferencia(databaseTransferencia, 1, 1, 1, 3000, conceptoUpdate);
-				break;
+				TestsTransferencia.updateTransferencia(databaseTransferencia, id2, id_ordenanteUpdate, id_beneficiarioUpdate, importeUpdate, conceptoUpdate);
+			break;
 				
 			case 20:
-				TestsTransferencia.deleteTransferencia(databaseTransferencia, 1);
-				break;
+				int id_transferenciaDelete = 1;
+				TestsTransferencia.deleteTransferencia(databaseTransferencia, id_transferenciaDelete);
+			break;
+			
+			case 21:
+				System.out.println("Programa finalizado");
+			break;
 			
 			
 			default:
-				System.out.println("ERROR: Debes pulsar un número entre el 1 y el 20.");
+				System.out.println("ERROR: Debes pulsar un número entre el 1 y el 21.");
 			}	
 			
+			if(opcion != 21) {
+				
+				System.out.println("\nPulsa x para continuar");
+				
+				String readString = keyboard.next();
+				
+				while(!readString.equals("x")) {
+					readString = keyboard.next();		        
+				}
+			}
 			
-			System.out.println("\nPulsa x para continuar");
-			
-			String readString = keyboard.next();
-			
-		    while(!readString.equals("x")) {
-		    	readString = keyboard.next();		        
-		    }
-			
-			}while (opcion != 0);		 
+			}while (opcion != 21);		 
 	}
 	
 	
