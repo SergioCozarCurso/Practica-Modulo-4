@@ -78,6 +78,7 @@ public class DatabaseMensaje {
 			
 			if(resultados.next()) {
 				mensaje = new Mensaje();
+				mensaje.setId(resultados.getInt("id"));
 				mensaje.setId_origen(resultados.getInt("id_origen"));
 				mensaje.setId_destino(resultados.getInt("id_destino"));
 				mensaje.setTexto(resultados.getString("texto"));

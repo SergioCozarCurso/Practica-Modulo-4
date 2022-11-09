@@ -1,7 +1,6 @@
 package app.curso.banco.main;
 
-import java.sql.Date;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -15,108 +14,24 @@ import app.curso.banco.entidad.Gestor;
 import app.curso.banco.entidad.Mensaje;
 import app.curso.banco.entidad.Transferencia;
 
+
+
 public class Main {
 
+	
 	public static void main(String[] args) throws SQLException {
-		
-		// inicializa la base de datos
-		DatabaseGestor databaseGestor = new DatabaseGestor();
-		DatabaseCliente databaseCliente = new DatabaseCliente();
-		DatabaseMensaje databaseMensaje = new DatabaseMensaje();
-		DatabaseTransferencia databaseTransferencia= new DatabaseTransferencia();
-		
-		
-		// GESTORES:
-				
-		// Obtiene los gestores
-		//obtenerGestores(databaseGestor);
-		
-		// Obtiene un gestor
-		//obtenerGestor(databaseGestor, 1);
-		
-		// Inserta un gestor
-		//insertarGestor(databaseGestor, "gestor1", "1234", "gestor1@email.com");
-		
-		// Actualiza un gestor
-		//updateGestor(databaseGestor, 1, "gestor4", "12345", "gestor4@email.com");
-		
-		// Elimina un gestor
-		//deleteGestor(databaseGestor, 2);
-		
-		//-----------------------------------------------------------------------------------
-		
-		
-		// CLIENTES:	
 
-		// Obtiene los clientes
-		//obtenerClientes(databaseCliente);
-		
-		// Obtiene un cliente
-		//obtenerCliente(databaseCliente, 1);
-		
-		// Inserta un cliente
-		//insertarCliente(databaseCliente, 1, "cliente2", "1234", "cliente2@email.com", 30.0);
-		
-		// Actualiza un cliente
-		//updateCliente(databaseCliente, 1, 1, "clienteUpdate", "12345", "clienteUpdate@email.com", 30.1);
-		
-		// Elimina un cliente
-		//deleteCliente(databaseCliente, 2);
-		
-		//-----------------------------------------------------------------------------------
-		
-		
-		// MENSAJES:
-		
-		// Obtiene los mensajes
-		//obtenerMensajes(databaseMensaje);
-		
-		// Obtiene un mensaje
-		//obtenerMensaje(databaseMensaje, 2);
-		
-		// Nuevo mensaje
-		//String texto = "Hola, prueba de crear un nuevo mensaje";
-		//nuevoMensaje(databaseMensaje, 1, 1, texto);
-		
-		// Actualiza un mensaje
-		//String textoUpdate = "Hola, prueba de crear un nuevo mensaje2";
-		//updateMensaje(databaseMensaje, 1, 1, 1, textoUpdate);
-		
-		// Elimina un mensaje
-		//deleteMensaje(databaseMensaje, 2);
-
-		//-----------------------------------------------------------------------------------
-		
-		
-		// TRANSFERENCIAS:
-		
-		// Obtiene las transferencias
-		//obtenerTransferencias(databaseTransferencia);
-		
-		// Obtiene una transferencia
-		//obtenerTransferencia(databaseTransferencia, 1);
-		
-		// Nueva transferencia
-		//String concepto = "Hola, prueba de crear un nuevo mensaje";
-		//nuevaTransferencia(databaseTransferencia, 1, 1, 2000, concepto);
-		
-		// Actualiza una transferencia
-		//String conceptoUpdate = "Hola, prueba de crear un nuevo mensaje2";
-		//updateTransferencia(databaseTransferencia, 1, 5, 1, 3000, conceptoUpdate);
-		
-		// Elimina una transferencia
-		//deleteTransferencia(databaseTransferencia, 1);
 	}
 	
 	
 	//GESTORES:
 	
 	// Read gestores
-	private static ArrayList<Gestor> obtenerGestores(DatabaseGestor database) {
+	public static ArrayList<Gestor> obtenerGestores(DatabaseGestor database) {
 		
 		ArrayList<Gestor> gestores = database.getGestores();
 		
-		if(gestores == null) {
+		if(gestores == null || gestores.size() == 0) {
 			System.out.println("No hay gestores o no se puedieron obtener");
 			return null;
 		}
@@ -126,7 +41,7 @@ public class Main {
 			System.out.println("Id: "+ gestor.getId());
 			System.out.println("Usuario: "+ gestor.getUsuario());
 			System.out.println("Password: "+ gestor.getPassword());
-			System.out.println("Correo: "+ gestor.getCorreo());
+			System.out.println("Correo: "+ gestor.getCorreo() + "\n");
 		});
 		
 		return gestores;
@@ -135,7 +50,7 @@ public class Main {
 	
 	
 	// Read gestor
-	private static Gestor obtenerGestor(DatabaseGestor database, int id) throws SQLException {
+	public static Gestor obtenerGestor(DatabaseGestor database, int id) throws SQLException {
 		
 		Gestor gestor = database.getGestor(id);
 		
@@ -145,7 +60,7 @@ public class Main {
 		}
 		
 		
-		System.out.println("Id: " + gestor.getId());
+		System.out.println("Id: " + id);
 		System.out.println("Usuario: " + gestor.getUsuario());
 		System.out.println("Password: " + gestor.getPassword());
 		System.out.println("Correo: " + gestor.getCorreo());
@@ -158,7 +73,7 @@ public class Main {
 	
 	
 	// Create gestor
-	private static boolean insertarGestor(DatabaseGestor database, String usuario, String password, String correo) {
+	public static boolean insertarGestor(DatabaseGestor database, String usuario, String password, String correo) {
 		
 		Gestor gestor = new Gestor(usuario, password, correo);
 		boolean insertado = database.insertarGestor(gestor);
@@ -174,7 +89,7 @@ public class Main {
 	
 	
 	// Update gestor
-	private static boolean updateGestor(DatabaseGestor database, int id, String usuario, String password, String correo) {
+	public static boolean updateGestor(DatabaseGestor database, int id, String usuario, String password, String correo) {
 		
 		Gestor gestor = new Gestor(usuario, password, correo);
 		gestor.setId(id);
@@ -191,7 +106,7 @@ public class Main {
 	
 	
 	// Delete gestor
-	private static boolean deleteGestor(DatabaseGestor database, int id) {
+	public static boolean deleteGestor(DatabaseGestor database, int id) {
 		
 		boolean borrado = database.deleteGestor(id);
 		
@@ -210,23 +125,23 @@ public class Main {
 	// CLIENTES:
 
 	// Read CLIENTES
-	private static ArrayList<Cliente> obtenerClientes(DatabaseCliente database) {
+	public static ArrayList<Cliente> obtenerClientes(DatabaseCliente database) {
 		
 		ArrayList<Cliente> clientes = database.getClientes();
 		
-		if(clientes == null) {
+		if(clientes == null || clientes.size() == 0) {
 			System.out.println("No hay clientes o no se puedieron obtener");
 			return null;
 		}
 		
 		
-		clientes.forEach((gestor) -> {
-			System.out.println("Id: "+ gestor.getId());
-			System.out.println("Id_gestor: "+ gestor.getId_gestor());
-			System.out.println("Usuario: "+ gestor.getUsuario());
-			System.out.println("Password: "+ gestor.getPassword());
-			System.out.println("Correo: "+ gestor.getCorreo());
-			System.out.println("Saldo: "+ gestor.getSaldo());
+		clientes.forEach((cliente) -> {
+			System.out.println("Id: "+ cliente.getId());
+			System.out.println("Id_gestor: "+ cliente.getId_gestor());
+			System.out.println("Usuario: "+ cliente.getUsuario());
+			System.out.println("Password: "+ cliente.getPassword());
+			System.out.println("Correo: "+ cliente.getCorreo());
+			System.out.println("Saldo: "+ cliente.getSaldo() + "\n");
 		});
 		
 		return clientes;
@@ -235,7 +150,7 @@ public class Main {
 	
 	
 	// Read cliente
-	private static Cliente obtenerCliente(DatabaseCliente database, int id) throws SQLException {
+	public static Cliente obtenerCliente(DatabaseCliente database, int id) throws SQLException {
 		
 		Cliente cliente = database.getCliente(id);
 		
@@ -259,7 +174,7 @@ public class Main {
 	
 	
 	// Create cliente
-	private static boolean insertarCliente(DatabaseCliente database,int id_gestor, String usuario, String password, String correo, Double saldo) {
+	public static boolean insertarCliente(DatabaseCliente database,int id_gestor, String usuario, String password, String correo, Double saldo) {
 		
 		Cliente cliente = new Cliente(id_gestor, usuario, password, correo, saldo);
 		boolean insertado = database.insertarCliente(cliente);
@@ -275,7 +190,7 @@ public class Main {
 	
 	
 	// Update cliente
-	private static boolean updateCliente(DatabaseCliente database, int id, int id_gestor, String usuario, String password, String correo, Double saldo) {
+	public static boolean updateCliente(DatabaseCliente database, int id, int id_gestor, String usuario, String password, String correo, Double saldo) {
 		
 		Cliente cliente = new Cliente(id_gestor, usuario, password, correo, saldo);
 		cliente.setId(id);
@@ -291,7 +206,7 @@ public class Main {
 	}
 	
 	// Delete cliente
-	private static boolean deleteCliente(DatabaseCliente database, int id) {
+	public static boolean deleteCliente(DatabaseCliente database, int id) {
 		
 		boolean borrado = database.deleteCliente(id);
 		
@@ -310,11 +225,11 @@ public class Main {
 	// MENSAJES:
 
 	// Read MENSAJES
-	private static ArrayList<Mensaje> obtenerMensajes(DatabaseMensaje database) {
+	public static ArrayList<Mensaje> obtenerMensajes(DatabaseMensaje database) {
 		
 		ArrayList<Mensaje> mensajes = database.getMensajes();
 		
-		if(mensajes == null) {
+		if(mensajes == null || mensajes.size() == 0) {
 			System.out.println("No hay mensajes o no se puedieron obtener");
 			return null;
 		}
@@ -325,7 +240,7 @@ public class Main {
 			System.out.println("Id_origen: "+ mensaje.getId_origen());
 			System.out.println("Id_destino: "+ mensaje.getId_destino());
 			System.out.println("Texto: "+ mensaje.getTexto());
-			System.out.println("Fecha: "+ mensaje.getFecha());
+			System.out.println("Fecha: "+ mensaje.getFecha() + "\n");
 		});
 		
 		return mensajes;
@@ -334,7 +249,7 @@ public class Main {
 	
 	
 	// Read mensaje
-	private static Mensaje obtenerMensaje(DatabaseMensaje database, int id) throws SQLException {
+	public static Mensaje obtenerMensaje(DatabaseMensaje database, int id) throws SQLException {
 		
 		Mensaje mensaje= database.getMensaje(id);
 		
@@ -343,7 +258,7 @@ public class Main {
 			return null;
 		}
 		
-		System.out.println("Id: "+ mensaje.getId());
+		System.out.println("Id: "+ id);
 		System.out.println("Id_origen: "+ mensaje.getId_origen());
 		System.out.println("Id_destino: "+ mensaje.getId_destino());
 		System.out.println("Texto: "+ mensaje.getTexto());
@@ -356,7 +271,7 @@ public class Main {
 	
 	
 	// Create mensaje
-	private static boolean nuevoMensaje(DatabaseMensaje database, int id_origen, int id_destino, String texto) {
+	public static boolean nuevoMensaje(DatabaseMensaje database, int id_origen, int id_destino, String texto) {
 		
 		
 		long ms = new java.util.Date().getTime();
@@ -377,7 +292,7 @@ public class Main {
 	
 	
 	// Update mensaje
-	private static boolean updateMensaje(DatabaseMensaje database, int id, int id_origen, int id_destino, String texto) {
+	public static boolean updateMensaje(DatabaseMensaje database, int id, int id_origen, int id_destino, String texto) {
 		
 		long ms = new java.util.Date().getTime();
 		Timestamp datetime = new Timestamp(ms);
@@ -396,7 +311,7 @@ public class Main {
 	}
 	
 	// Delete mensaje
-	private static boolean deleteMensaje(DatabaseMensaje database, int id) {
+	public static boolean deleteMensaje(DatabaseMensaje database, int id) {
 		
 		boolean borrado = database.deleteMensaje(id);
 		
@@ -416,11 +331,11 @@ public class Main {
 	
 
 	// Read transferencias
-	private static ArrayList<Transferencia> obtenerTransferencias(DatabaseTransferencia database) {
+	public static ArrayList<Transferencia> obtenerTransferencias(DatabaseTransferencia database) {
 		
 		ArrayList<Transferencia> transferencias= database.getTransferencias();
 		
-		if(transferencias == null) {
+		if(transferencias == null || transferencias.size() == 0) {
 			System.out.println("No hay transferencias o no se puedieron obtener");
 			return null;
 		}
@@ -432,7 +347,7 @@ public class Main {
 			System.out.println("Id_beneficiario: "+ transferencia.getId_beneficiario());
 			System.out.println("Importe: "+ transferencia.getImporte());
 			System.out.println("Concepto: "+ transferencia.getConcepto());
-			System.out.println("Fecha: "+ transferencia.getFecha());
+			System.out.println("Fecha: "+ transferencia.getFecha() + "\n");
 		});
 		
 		return transferencias;
@@ -441,7 +356,7 @@ public class Main {
 	
 	
 	// Read transferencia
-	private static Transferencia obtenerTransferencia(DatabaseTransferencia database, int id) throws SQLException {
+	public static Transferencia obtenerTransferencia(DatabaseTransferencia database, int id) throws SQLException {
 		
 		Transferencia transferencia= database.getTransferencia(id);
 		
@@ -450,7 +365,7 @@ public class Main {
 			return null;
 		}
 		
-		System.out.println("Id: "+ transferencia.getId());
+		System.out.println("Id: "+ id);
 		System.out.println("Id_ordenante: "+ transferencia.getId_ordenante());
 		System.out.println("Id_beneficiario: "+ transferencia.getId_beneficiario());
 		System.out.println("Importe: "+ transferencia.getImporte());
@@ -464,7 +379,7 @@ public class Main {
 	
 
 	// Create transferencia
-	private static boolean nuevaTransferencia(DatabaseTransferencia database, int id_ordenante, int id_beneficiario, double importe, String concepto) {
+	public static boolean nuevaTransferencia(DatabaseTransferencia database, int id_ordenante, int id_beneficiario, double importe, String concepto) {
 		
 		
 		long ms = new java.util.Date().getTime();
@@ -485,7 +400,7 @@ public class Main {
 	
 	
 	// Update transferencia
-	private static boolean updateTransferencia(DatabaseTransferencia database, int id, int id_ordenante, int id_beneficiario, double importe, String concepto) {
+	public static boolean updateTransferencia(DatabaseTransferencia database, int id, int id_ordenante, int id_beneficiario, double importe, String concepto) {
 		
 		long ms = new java.util.Date().getTime();
 		Timestamp datetime = new Timestamp(ms);
@@ -504,7 +419,7 @@ public class Main {
 	}
 	
 	// Delete transferencia
-	private static boolean deleteTransferencia(DatabaseTransferencia database, int id) {
+	public static boolean deleteTransferencia(DatabaseTransferencia database, int id) {
 		
 		boolean borrado = database.deleteTransferencia(id);
 		
