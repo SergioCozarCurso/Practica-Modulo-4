@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import app.curso.banco.db.DatabaseCliente;
 import app.curso.banco.db.DatabaseGestor;
 import app.curso.banco.db.DatabaseMensaje;
+import app.curso.banco.db.DatabaseTransferencia;
 import app.curso.banco.entidad.Cliente;
 import app.curso.banco.entidad.Gestor;
 import app.curso.banco.entidad.Mensaje;
+import app.curso.banco.entidad.Transferencia;
 
 public class Main {
 
@@ -21,11 +23,11 @@ public class Main {
 		DatabaseGestor databaseGestor = new DatabaseGestor();
 		DatabaseCliente databaseCliente = new DatabaseCliente();
 		DatabaseMensaje databaseMensaje = new DatabaseMensaje();
+		DatabaseTransferencia databaseTransferencia= new DatabaseTransferencia();
+		
 		
 		// GESTORES:
-		
-		ArrayList<Gestor> gestores = null;
-		
+				
 		// obtiene los gestores
 		//gestores = obtenerGestores(databaseGestor);
 		
@@ -43,9 +45,8 @@ public class Main {
 		
 		//-----------------------------------------------------------------------------------
 		
-		// CLIENTES:
-		ArrayList<Cliente> clientes = null;
 		
+		// CLIENTES:	
 
 		// obtiene los clientes
 		//obtenerClientes(databaseCliente);
@@ -64,9 +65,8 @@ public class Main {
 		
 		//-----------------------------------------------------------------------------------
 		
-		// MENSAJES:
-		ArrayList<Cliente> mensajes = null;
 		
+		// MENSAJES:
 		
 		// obtiene los mensajes
 		//obtenerMensajes(databaseMensaje);
@@ -75,8 +75,8 @@ public class Main {
 		//obtenerMensaje(databaseMensaje, 2);
 		
 		// Nuevo mensaje
-		String texto = "Hola, prueba de crear un nuevo mensaje2";
-		nuevoMensaje(databaseMensaje, 1, 1, texto);
+		//String texto = "Hola, prueba de crear un nuevo mensaje";
+		//nuevoMensaje(databaseMensaje, 1, 1, texto);
 		
 		// actualiza un mensaje
 		//String textoUpdate = "Hola, prueba de crear un nuevo mensaje2";
@@ -84,6 +84,28 @@ public class Main {
 		
 		// elimina un mensaje
 		//deleteMensaje(databaseMensaje, 2);
+
+		//-----------------------------------------------------------------------------------
+		
+		
+		// TRANSFERENCIAS:
+		
+		// Obtiene las transferencias
+		//obtenerTransferencias(databaseTransferencia);
+		
+		// Obtiene una transferencia
+		//obtenerTransferencia(databaseTransferencia, 1);
+		
+		// Nueva transferencia
+		//String concepto = "Hola, prueba de crear un nuevo mensaje";
+		//nuevaTransferencia(databaseTransferencia, 1, 1, 2000, concepto);
+		
+		// Actualiza una transferencia
+		//String conceptoUpdate = "Hola, prueba de crear un nuevo mensaje2";
+		//updateTransferencia(databaseTransferencia, 1, 5, 1, 3000, conceptoUpdate);
+		
+		// Elimina una transferencia
+		deleteTransferencia(databaseTransferencia, 1);
 	}
 	
 	
@@ -377,7 +399,108 @@ public class Main {
 		return borrado;
 	}
 
+	// -------------------------------------------------------------------------------------------------------------------------------------
 	
+	
+	// TRANSFERENCIAS:
+	
+
+	// Read transferencias
+	private static ArrayList<Transferencia> obtenerTransferencias(DatabaseTransferencia database) {
+		
+		ArrayList<Transferencia> transferencias= database.getTransferencias();
+		
+		
+		transferencias.forEach((transferencia) -> {
+			System.out.println("Id: "+ transferencia.getId());
+			System.out.println("Id_ordenante: "+ transferencia.getId_ordenante());
+			System.out.println("Id_beneficiario: "+ transferencia.getId_beneficiario());
+			System.out.println("Importe: "+ transferencia.getImporte());
+			System.out.println("Concepto: "+ transferencia.getConcepto());
+			System.out.println("Fecha: "+ transferencia.getFecha());
+		});
+		
+		return transferencias;
+	
+	}
+	
+	
+	// Read transferencia
+	private static Transferencia obtenerTransferencia(DatabaseTransferencia database, int id) throws SQLException {
+		
+		Transferencia transferencia= database.getTransferencia(id);
+		
+		if(transferencia ==null) {
+			System.out.println("No existe esa transferencia");
+			return null;
+		}
+		
+		System.out.println("Id: "+ transferencia.getId());
+		System.out.println("Id_ordenante: "+ transferencia.getId_ordenante());
+		System.out.println("Id_beneficiario: "+ transferencia.getId_beneficiario());
+		System.out.println("Importe: "+ transferencia.getImporte());
+		System.out.println("Concepto: "+ transferencia.getConcepto());
+		System.out.println("Fecha: "+ transferencia.getFecha());
+		
+		
+		return transferencia;
+		
+	}
+	
+
+	// Create transferencia
+	private static boolean nuevaTransferencia(DatabaseTransferencia database, int id_ordenante, int id_beneficiario, double importe, String concepto) {
+		
+		
+		long ms = new java.util.Date().getTime();
+		Timestamp datetime = new Timestamp(ms);
+				
+		
+		Transferencia transferencia= new Transferencia(id_ordenante, id_beneficiario, importe, concepto, datetime);
+		boolean insertado = database.nuevaTransferencia(transferencia);
+		
+		if(insertado == true) {			
+			System.out.println("Transferencia realizada correctamente");
+		}else {
+			System.out.println("No se pudo enviar la transferencia");			
+		}
+		
+		return insertado;
+	}
+	
+	
+	// Update transferencia
+	private static boolean updateTransferencia(DatabaseTransferencia database, int id, int id_ordenante, int id_beneficiario, double importe, String concepto) {
+		
+		long ms = new java.util.Date().getTime();
+		Timestamp datetime = new Timestamp(ms);
+		
+		Transferencia transferencia= new Transferencia(id_ordenante, id_beneficiario, importe, concepto, datetime);
+		transferencia.setId(id);
+		boolean insertado = database.updateTransferencia(transferencia);
+		
+		if(insertado == true) {
+			System.out.println("Transferencia actualizada correctamente");
+		}else {
+			System.out.println("No se pudo actualizar la transferencia");			
+		}
+		
+		return insertado;
+	}
+	
+	// Delete transferencia
+	private static boolean deleteTransferencia(DatabaseTransferencia database, int id) {
+		
+		boolean borrado = database.deleteTransferencia(id);
+		
+		if(borrado == true) {			
+			System.out.println("Transferencia borrada correctamente");
+		}else {
+			System.out.println("No se pudo borrar el transferencia");			
+		}
+		
+		return borrado;
+	}
 	
 	
 }

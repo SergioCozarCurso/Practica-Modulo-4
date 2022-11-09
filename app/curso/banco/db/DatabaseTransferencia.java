@@ -113,19 +113,20 @@ public class DatabaseTransferencia {
 		}
 	
 	
-	public boolean nuevoMensaje(Mensaje mensaje) {
+	public boolean nuevaTransferencia(Transferencia transferencia) {
 		
 	PreparedStatement instruccion = null;
 	
 	try {
 		
 
-		instruccion = conexion.prepareStatement("INSERT INTO mensaje(id_origen, id_destino, texto, fecha) VALUES (?,?,?,?)");
+		instruccion = conexion.prepareStatement("INSERT INTO transferencia(id_ordenante, id_beneficiario, importe, concepto, fecha) VALUES (?,?,?,?,?)");
 		
-		instruccion.setInt(1, mensaje.getId_origen());
-		instruccion.setInt(2, mensaje.getId_destino());
-		instruccion.setString(3, mensaje.getTexto());
-		instruccion.setTimestamp(4, mensaje.getFecha());
+		instruccion.setInt(1, transferencia.getId_ordenante());
+		instruccion.setInt(2, transferencia.getId_beneficiario());
+		instruccion.setDouble(3, transferencia.getImporte());
+		instruccion.setString(4, transferencia.getConcepto());
+		instruccion.setTimestamp(5, transferencia.getFecha());
 
 		// ejecuta sentencia SQL
 		int filasCreadas = instruccion.executeUpdate();
@@ -148,20 +149,21 @@ public class DatabaseTransferencia {
 	}	
 
 	
-	public boolean updateMensaje(Mensaje mensaje) {
+	public boolean updateTransferencia(Transferencia transferencia) {
 		
 	
 		PreparedStatement instruccion = null;
 		
 		try {
 			
-			instruccion = conexion.prepareStatement("UPDATE `mensaje` SET id_origen= ?,id_destino= ?,texto= ?, fecha= ? WHERE id=?");
+			instruccion = conexion.prepareStatement("UPDATE `transferencia` SET id_ordenante= ?,id_beneficiario= ?,importe= ?, concepto= ?, fecha= ? WHERE id=?");
 			
-			instruccion.setInt(1, mensaje.getId_origen());
-			instruccion.setInt(2, mensaje.getId_destino());
-			instruccion.setString(3, mensaje.getTexto());
-			instruccion.setTimestamp(4, mensaje.getFecha());
-			instruccion.setInt(5, mensaje.getId());
+			instruccion.setInt(1, transferencia.getId_ordenante());
+			instruccion.setInt(2, transferencia.getId_beneficiario());
+			instruccion.setDouble(3, transferencia.getImporte());
+			instruccion.setString(4, transferencia.getConcepto());
+			instruccion.setTimestamp(5, transferencia.getFecha());
+			instruccion.setInt(6, transferencia.getId());
 	
 			int filasActualizadas = instruccion.executeUpdate();			
 			return filasActualizadas !=0;
@@ -183,7 +185,7 @@ public class DatabaseTransferencia {
 		}
 
 
-	public boolean deleteMensaje(int id) {
+	public boolean deleteTransferencia(int id) {
 		
 		
 		PreparedStatement instruccion = null;
@@ -191,7 +193,7 @@ public class DatabaseTransferencia {
 		try {
 			
 
-			instruccion = conexion.prepareStatement("DELETE FROM `mensaje` WHERE id = ?");
+			instruccion = conexion.prepareStatement("DELETE FROM `transferencia` WHERE id = ?");
 			
 			instruccion.setInt(1,id);
 			
